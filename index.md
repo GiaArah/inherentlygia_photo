@@ -7,10 +7,11 @@ order: 1
 
 <div class="section header">
 	<div class="container">
-		<img src="{{ "/assets/img/logo.svg" | relative_url }}">
-		<h3 class="section-heading">photography</h3>
+		<!-- <img src="{{ "/assets/img/logo.svg" | relative_url }}"> -->
+		<h1 class="logo_title">inherentlygia photography</h1>
+		<!-- <h3 class="section-heading">photography</h3> -->
 		<p class="section-description">
-			Discovering the world with my vision.
+			In the world, off the grid.
 		</p>
 		<div id="navbar-wrapper">
 			<div id="navbar">

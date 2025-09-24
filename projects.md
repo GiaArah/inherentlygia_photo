@@ -1,7 +1,7 @@
 ---
 title: projects
 layout: rest
-description: I try to work sometimes.
+description: gallery of my images.
 type: parent
 order: 3
 ---
