@@ -38,6 +38,8 @@ collections:
     output: true 
   sicily:
     output: true
+  tokyo:
+    output: true
 
 markdown: kramdown
 kramdown:
