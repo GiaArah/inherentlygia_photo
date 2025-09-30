@@ -2,6 +2,6 @@
 title: Sicily
 layout: default
 description: Landscape & Street
-type: project
+type: landscapestreet
 order: 4
 ---

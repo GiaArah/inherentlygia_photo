@@ -1,5 +1,5 @@
 ---
-title: Tokyo
+title: Kyrgyzstan
 layout: default
 description: Landscape & Street
 type: landscapestreet
