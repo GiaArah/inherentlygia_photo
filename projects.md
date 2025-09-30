@@ -1,4 +1,4 @@
----
+<!-- ---
 title: projects
 layout: rest
 description: personal and commercial projects.
@@ -13,4 +13,4 @@ order: 3
 		<a class="button" href="{{ page.url | relative_url }}">{{ page.title }}</a>
 		{% endfor %}
 	</div>
-</div>
+</div> -->
