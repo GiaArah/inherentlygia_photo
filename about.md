@@ -9,7 +9,7 @@ order: 2
 <div class="section main">
 	<div class="container">
 		<p markdown="1" style="text-align: center;">
-			I always found filmmaking, photojournalism, and photography one of many forms of artistic expression that I enjoy
+			I always found filmmaking, photojournalism, and photography one of many forms of artistic expression that I enjoy.
 		</p>
 	</div>
 </div>
