@@ -41,7 +41,7 @@
 		</p>
 		<div id="navbar-wrapper">
 			<div id="navbar">
-				<img id="brand" class="hide" src="/assets/img/logo.svg" />
+				<!-- <img id="brand" class="hide" src="/assets/img/logo.svg"> -->
 				
 				
 				<a class="button" href="/">home</a>
@@ -55,28 +55,85 @@
 	</div>
 </div>
 
-<div class="section main">
+<!-- <div class="section main">
 	<div class="container">
 		<div class="row" id="gallery">
 			
 			
-			<!---->
+			
 			<div class="column">
 				
 				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="home/home-01.JPG" alt="home-01" />
+					<img class="lozad u-max-full-width" data-src="home/home_01.jpg" alt="home_01" />
+				</article>
+				
+				<article class="thumb">
+					<img class="lozad u-max-full-width" data-src="home/home_02.jpg" alt="home_02" />
+				</article>
+				
+				<article class="thumb">
+					<img class="lozad u-max-full-width" data-src="home/home_04.jpg" alt="home_04" />
 				</article>
 				
 			</div>
-			<!--<div class="one-half column">
+			<div class="one-half column">
 				
 				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="home/home-01.JPG" alt="home-01" />
+					<img class="lozad u-max-full-width" data-src="home/home_02.jpg" alt="home_02" />
 				</article>
 				
-			</div>-->
+				<article class="thumb">
+					<img class="lozad u-max-full-width" data-src="home/home_04.jpg" alt="home_04" />
+				</article>
+				
+			</div>
 		</div>
 	</div>
+</div> -->
+
+<style>
+    .main .container {
+        max-width: 2800px; /* Adjust as needed */
+    }
+    #gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    #gallery .thumb {
+        flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
+        margin: 0;
+    }
+    #gallery .thumb img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+</style>
+
+<div class="section main">
+    <div class="container">
+        <!-- 
+ -->
+        <div id="gallery">
+			
+			
+			
+            
+            <a class="thumb" href="/home/home_01.jpg">
+                <img class="lozad" data-src="/home/home_01.jpg" alt="home_01" />
+            </a>
+            
+            <a class="thumb" href="/home/home_02.jpg">
+                <img class="lozad" data-src="/home/home_02.jpg" alt="home_02" />
+            </a>
+            
+            <a class="thumb" href="/home/home_04.jpg">
+                <img class="lozad" data-src="/home/home_04.jpg" alt="home_04" />
+            </a>
+            
+        </div>
+    </div>
 </div>
 
 	<!-- End Document
