@@ -32,12 +32,18 @@
             {% assign k = page.name.size | minus: 3 %}
             {% assign n = page.name | slice: 0, k %}
             {% assign coll = site.collections | where: "label", n | first %}
-            {% assign list = coll.files | sort: "basename" %}
-            {% for image in coll.files %}
-            <a class="thumb" href="{{ coll.label | append: '/' | append: image.name | relative_url }}">
-                <img class="lozad" data-src="{{ coll.label | append: '/' | append: image.name | relative_url }}" alt="{{ image.basename }}" />
-            </a>
-            {% endfor %}
+
+            {% if coll and coll.files %}
+                {% assign list = coll.files | sort: "basename" %}
+                {% for image in coll.files %}
+                <a class="thumb" href="{{ coll.label | append: '/' | append: image.name | relative_url }}">
+                    <img class="lozad" data-src="{{ coll.label | append: '/' | append: image.name | relative_url }}" alt="{{ image.basename }}" />
+                </a>
+                {% endfor %}
+            {% else %}
+                <p>No images found for collection: {{ n }}</p>
+                <p>Debug info: Collection label: {{ coll.label }}, Collection size: {{ coll.files.size }}</p>
+            {% endif %}
         </div>
     </div>
 </div>
