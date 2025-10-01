@@ -11,7 +11,7 @@ order: 1
 		<h1 class="logo_title">inherentlygia photography</h1>
 		<!-- <h3 class="section-heading">photography</h3> -->
 		<p class="section-description">
-			In the world, off the grid.
+			In the world, off the map.
 		</p>
 		<div id="navbar-wrapper">
 			<div id="navbar">
