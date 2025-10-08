@@ -20,6 +20,8 @@ collections:
     output: true
   kazakhstan:
     output: true
+  turkey:
+    output: true
 
 markdown: kramdown
 kramdown:
