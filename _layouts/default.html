@@ -24,41 +24,52 @@
             cursor: pointer;
         }
 
-        .flex-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        }
+    .flex-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure container doesn't grow wider than parent */
+    overflow: hidden; /* Safety net for overflows */
+    }
 
+    .flex-gallery li {
+    height: 300px; /* Base height for desktop */
+    flex-grow: 1;
+    margin: 5px;
+    }
+
+    .flex-gallery img {
+    max-height: 100%;
+    min-width: 100%;
+    max-width: 100%; /* This stops the "wider than screen" issue */
+    object-fit: cover;
+    vertical-align: bottom;
+    }
+
+    /* --- MOBILE OPTIMIZATION --- */
+    @media (max-width: 600px) {
+    .flex-gallery li {
+        height: 200px; /* Shorter rows for small screens */
+        margin: 3px;
+    }
+    
+    /* If you want 1 image per row on very small phones */
+    @media (max-width: 400px) {
         .flex-gallery li {
-        height: 40vh; /* Adjust height of the rows */
-        flex-grow: 1;
-        margin: 5px; /* Gutter between photos */
+        height: auto;
+        width: 100%; /* Force full width */
+        flex-grow: 0;
         }
-
-        /* Fixes the "stretchy" last row issue */
-        .flex-gallery::after {
-        content: "";
-        flex-grow: 10;
-        }
-
         .flex-gallery img {
-        max-height: 100%;
-        min-width: 100%;
-        object-fit: cover;
-        vertical-align: bottom;
-        /* border-radius: 4px;  Optional: rounded corners */
+        width: 100%;
+        height: auto;
         }
+    }
 
-        /* Mobile adjustments */
-        @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
-        .flex-gallery li {
-            height: auto;
-            width: 100%;
-        }
-        }
+
+    }
 
     </style>
 
