@@ -5,51 +5,120 @@
     {% include header.html %}
     <!-- Primary Page Layout
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<style>
-    .main .container {
-        max-width: 2800px; /* Adjust as needed */
-    }
-    #gallery {
+    <style>
+        .main .container {
+            max-width: 2800px; /* Adjust as needed */
+        }
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        #gallery .thumb {
+            flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
+            margin: 0;
+        }
+        #gallery .thumb img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .flex-gallery {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
-    }
-    #gallery .thumb {
-        flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
+        list-style: none;
+        padding: 0;
         margin: 0;
-    }
-    #gallery .thumb img {
-        width: 100%;
-        height: auto;
-        cursor: pointer;
-    }
-</style>
+        }
 
-<div class="section main">
-    <iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" style="border: 1px solid lightgray; width: 100%; height: 600px;" src={{ page.heyzine_src }}></iframe>
-    <div class="container">
-        {{ page.body | markdownify }}
-        <div id="gallery">
-            {% assign k = page.name.size | minus: 3 %}
-            {% assign n = page.name | slice: 0, k %}
-            {% assign coll = site.collections | where: "label", n | first %}
+        .flex-gallery li {
+        height: 40vh; /* Adjust height of the rows */
+        flex-grow: 1;
+        margin: 5px; /* Gutter between photos */
+        }
 
-            {% if coll and coll.files %}
-                {% assign list = coll.files | sort: "basename" %}
-                {% for image in coll.files %}
-                <a class="thumb" href="{{ coll.label | append: '/' | append: image.name | relative_url }}">
-                    <img class="lozad" data-src="{{ coll.label | append: '/' | append: image.name | relative_url }}" alt="{{ image.basename }}" />
-                </a>
-                {% endfor %}
-            {% else %}
-                <p>No images found for collection: {{ n }}</p>
-                <p>Debug info: Collection label: {{ coll.label }}, Collection size: {{ coll.files.size }}</p>
-            {% endif %}
-        </div>
+        /* Fixes the "stretchy" last row issue */
+        .flex-gallery::after {
+        content: "";
+        flex-grow: 10;
+        }
+
+        .flex-gallery img {
+        max-height: 100%;
+        min-width: 100%;
+        object-fit: cover;
+        vertical-align: bottom;
+        /* border-radius: 4px;  Optional: rounded corners */
+        }
+
+        /* Mobile adjustments */
+        @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+        .flex-gallery li {
+            height: auto;
+            width: 100%;
+        }
+        }
+
+    </style>
+
+    <div class="section main">
+        <iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" style="border: 1px solid lightgray; width: 100%; height: 600px;" src={{ page.heyzine_src }}></iframe>
+        <!-- <div class="container">
+            {{ page.body | markdownify }}
+            <div id="gallery">
+                {% assign k = page.name.size | minus: 3 %}
+                {% assign n = page.name | slice: 0, k %}
+                {% assign coll = site.collections | where: "label", n | first %}
+
+                {% if coll and coll.files %}
+                    {% assign list = coll.files | sort: "basename" %}
+                    {% for image in coll.files %}
+                    <a class="thumb" href="{{ coll.label | append: '/' | append: image.name | relative_url }}">
+                        <img class="lozad" data-src="{{ coll.label | append: '/' | append: image.name | relative_url }}" alt="{{ image.basename }}" />
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    <p>No images found for collection: {{ n }}</p>
+                    <p>Debug info: Collection label: {{ coll.label }}, Collection size: {{ coll.files.size }}</p>
+                {% endif %}
+            </div>
+        </div> -->
+        <ul id="photo-gallery" class="flex-gallery">
+            <!-- JavaScript will inject <li> items here -->
+            <li class="loading">Loading your photography...</li>
+        </ul>
     </div>
-</div>
     <!-- End Document
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    {% include footer.html %}
+    <!-- {% include footer.html %} -->
+
+    <script>
+        const folderName = "{{ page.r2_folder }}"; 
+        const workerBaseUrl = 'https://image-retriever.gia-arah.workers.dev';
+
+        async function loadAdaptiveGallery() {
+            const gallery = document.getElementById('photo-gallery');
+            
+            try {
+            // Append the folder as a query parameter
+            const response = await fetch(`${workerBaseUrl}?folder=${folderName}`);
+            const images = await response.json();
+            
+            if (images.length === 0) {
+                gallery.innerHTML = '<li>No images found in this folder.</li>';
+                return;
+            }
+
+            gallery.innerHTML = images.map(img => `
+                <li><img src="${img.url}" alt="${img.name}" loading="lazy"></li>
+            `).join('');
+            } catch (err) {
+            console.error(err);
+            }
+        }
+
+        loadAdaptiveGallery();
+    </script>
 </body>
 </html>
