@@ -7,7 +7,7 @@
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <style>
         .main .container {
-            max-width: 2800px; /* Adjust as needed */
+            max-width: 2800px;
         }
         #gallery {
             display: flex;
@@ -15,7 +15,7 @@
             gap: 10px;
         }
         #gallery .thumb {
-            flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
+            flex: 1 1 calc(25% - 10px);
             margin: 0;
         }
         #gallery .thumb img {
@@ -24,51 +24,49 @@
             cursor: pointer;
         }
 
-    .flex-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%; /* Ensure container doesn't grow wider than parent */
-    overflow: hidden; /* Safety net for overflows */
-    }
+        .flex-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            overflow: hidden; 
+        }
 
-    .flex-gallery li {
-    height: 300px; /* Base height for desktop */
-    flex-grow: 1;
-    margin: 5px;
-    }
-
-    .flex-gallery img {
-    max-height: 100%;
-    min-width: 100%;
-    max-width: 100%; /* This stops the "wider than screen" issue */
-    object-fit: cover;
-    vertical-align: bottom;
-    }
-
-    /* --- MOBILE OPTIMIZATION --- */
-    @media (max-width: 600px) {
-    .flex-gallery li {
-        height: 200px; /* Shorter rows for small screens */
-        margin: 3px;
-    }
-    
-    /* If you want 1 image per row on very small phones */
-    @media (max-width: 400px) {
         .flex-gallery li {
-        height: auto;
-        width: 100%; /* Force full width */
-        flex-grow: 0;
+            height: 300px;
+            flex-grow: 1;
+            margin: 5px;
         }
+
         .flex-gallery img {
-        width: 100%;
-        height: auto;
+            max-height: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            vertical-align: bottom;
         }
-    }
 
-
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 600px) {
+        .flex-gallery li {
+            height: 200px; /* Shorter rows for small screens */
+            margin: 3px;
+        }
+        
+        /* If you want 1 image per row on very small phones */
+        @media (max-width: 400px) {
+            .flex-gallery li {
+            height: auto;
+            width: 100%; /* Force full width */
+            flex-grow: 0;
+            }
+            .flex-gallery img {
+            width: 100%;
+            height: auto;
+            }
+        }
     }
 
     </style>
@@ -97,38 +95,56 @@
         </div> -->
         <ul id="photo-gallery" class="flex-gallery">
             <!-- JavaScript will inject <li> items here -->
-            <li class="loading">Loading your photography...</li>
+            <li class="lozad">Loading your photography...</li>
         </ul>
     </div>
     <!-- End Document -->
+
     {% include footer.html %}
 
+    <!-- <script defer> -->
     <script>
         const folderName = "{{ page.r2_folder }}"; 
         const workerBaseUrl = 'https://image-retriever.gia-arah.workers.dev';
 
         async function loadAdaptiveGallery() {
-            const gallery = document.getElementById('photo-gallery');
+
+            const gallery = $('#photo-gallery');
             
             try {
-            // Append the folder as a query parameter
-            const response = await fetch(`${workerBaseUrl}?folder=${folderName}`);
-            const images = await response.json();
-            
-            if (images.length === 0) {
-                gallery.innerHTML = '<li>No images found in this folder.</li>';
-                return;
-            }
+                const response = await fetch(`${workerBaseUrl}?folder=${folderName}`);
+                const images = await response.json();
+                
+                if (images.length === 0) {
+                    gallery.html('<li>No images found in this folder.</li>');
+                    return;
+                }
 
-            gallery.innerHTML = images.map(img => `
-                <li><img src="${img.url}" alt="${img.name}" loading="lazy"></li>
-            `).join('');
+                gallery.html(images.map(img => `
+                    <li>
+                        <a href="${img.url}" data-src="${img.url}">
+                            <img src="${img.url}" alt="${img.name}" loading="lazy">
+                        </a>
+                    </li>
+                `).join(''));
+
+                gallery.lightGallery({
+                    selector: 'a',
+                    download: false,
+                });
+
             } catch (err) {
-            console.error(err);
+                console.error(err);
             }
         }
 
-        loadAdaptiveGallery();
+        // loadAdaptiveGallery();
+        // document.addEventListener('DOMContentLoaded', loadAdaptiveGallery);
+        $(document).ready(function() {
+            loadAdaptiveGallery();
+        });
+
     </script>
+
 </body>
 </html>
