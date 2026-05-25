@@ -53,16 +53,16 @@ order: 1
     .main .container {
         max-width: 2800px; /* Adjust as needed */
     }
-    #gallery {
+    #photo-gallery {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
     }
-    #gallery .thumb {
+    #photo-gallery .thumb {
         flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
         margin: 0;
     }
-    #gallery .thumb img {
+    #photo-gallery .thumb img {
         width: 100%;
         height: auto;
         cursor: pointer;
@@ -72,7 +72,7 @@ order: 1
 <div class="section main">
     <div class="container">
         <!-- {{ page.body | markdownify }} -->
-        <div id="gallery">
+        <div id="photo-gallery">
 			{% assign coll = site.collections | where: "label", "home" | first %}
 			{% assign list = coll.files | sort: "basename" %}
 			{% assign l = coll.files.size | divided_by: 2 | ceil %}

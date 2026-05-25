@@ -94,16 +94,16 @@
     .main .container {
         max-width: 2800px; /* Adjust as needed */
     }
-    #gallery {
+    #photo-gallery {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
     }
-    #gallery .thumb {
+    #photo-gallery .thumb {
         flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
         margin: 0;
     }
-    #gallery .thumb img {
+    #photo-gallery .thumb img {
         width: 100%;
         height: auto;
         cursor: pointer;
@@ -114,7 +114,7 @@
     <div class="container">
         <!-- 
  -->
-        <div id="gallery">
+        <div id="photo-gallery">
 			
 			
 			
@@ -246,4 +246,12 @@ pictureObserver.observe()
 <!-- font-awesome -->
 <script type="text/javascript" src="https://kit.fontawesome.com/1780dd6d31.js"></script>
 </body>
+<script type="text/javascript">
+    $('#photo-gallery').lightGallery({
+        selector: '.lozad',
+        speed: 200,
+        mode: 'lg-fade',
+        download: false
+    });
+</script>
 </html>
