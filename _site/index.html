@@ -30,7 +30,27 @@
 </head>
 <body>
  	<!-- Primary Page Layout -->
-	<div class="section header">
+	<style>
+    .main .container {
+        max-width: 2800px; /* Adjust as needed */
+    }
+    #photo-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    #photo-gallery .thumb {
+        flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
+        margin: 0;
+    }
+    #photo-gallery .thumb img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+</style>
+
+<div class="section header">
 	<div class="container">
 		<!-- <img src="/assets/img/logo.svg"> -->
 		<h1 class="logo_title">inherentlygia photography</h1>
@@ -53,62 +73,6 @@
 		</div>
 	</div>
 </div>
-
-<!-- <div class="section main">
-	<div class="container">
-		<div class="row" id="gallery">
-			
-			
-			
-			<div class="column">
-				
-				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="home/home_01.jpg" alt="home_01" />
-				</article>
-				
-				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="home/home_02.jpg" alt="home_02" />
-				</article>
-				
-				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="home/home_04.jpg" alt="home_04" />
-				</article>
-				
-			</div>
-			<div class="one-half column">
-				
-				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="home/home_02.jpg" alt="home_02" />
-				</article>
-				
-				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="home/home_04.jpg" alt="home_04" />
-				</article>
-				
-			</div>
-		</div>
-	</div>
-</div> -->
-
-<style>
-    .main .container {
-        max-width: 2800px; /* Adjust as needed */
-    }
-    #photo-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    #photo-gallery .thumb {
-        flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
-        margin: 0;
-    }
-    #photo-gallery .thumb img {
-        width: 100%;
-        height: auto;
-        cursor: pointer;
-    }
-</style>
 
 <div class="section main">
     <div class="container">

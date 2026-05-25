@@ -4,6 +4,25 @@ layout: home
 type: parent
 order: 1
 ---
+<style>
+    .main .container {
+        max-width: 2800px; /* Adjust as needed */
+    }
+    #photo-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    #photo-gallery .thumb {
+        flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
+        margin: 0;
+    }
+    #photo-gallery .thumb img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+</style>
 
 <div class="section header">
 	<div class="container">
@@ -24,50 +43,6 @@ order: 1
 		</div>
 	</div>
 </div>
-
-<!-- <div class="section main">
-	<div class="container">
-		<div class="row" id="gallery">
-			{% assign coll = site.collections | where: "label", "home" | first %}
-			{% assign list = coll.files | sort: "basename" %}
-			{% assign l = coll.files.size | divided_by: 2 | ceil %}
-			<div class="column">
-				{% for image in list  %}
-				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="{{ coll.label | append: '/' | append: image.name }}" alt="{{ image.basename }}" />
-				</article>
-				{% endfor %}
-			</div>
-			<div class="one-half column">
-				{% for image in list offset: l %}
-				<article class="thumb">
-					<img class="lozad u-max-full-width" data-src="{{ coll.label | append: '/' | append: image.name }}" alt="{{ image.basename }}" />
-				</article>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-</div> -->
-
-<style>
-    .main .container {
-        max-width: 2800px; /* Adjust as needed */
-    }
-    #photo-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    #photo-gallery .thumb {
-        flex: 1 1 calc(25% - 10px); /* 3 columns with gap */
-        margin: 0;
-    }
-    #photo-gallery .thumb img {
-        width: 100%;
-        height: auto;
-        cursor: pointer;
-    }
-</style>
 
 <div class="section main">
     <div class="container">
