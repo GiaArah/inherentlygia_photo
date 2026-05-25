@@ -1,5 +1,5 @@
 ---
-title: about
+title: About
 layout: rest
 description: personal statement
 type: parent
