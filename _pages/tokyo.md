@@ -1,5 +1,5 @@
 ---
-title: Tokyo
+title: Japan
 layout: default
 description: Landscape & Street
 type: landscapestreet
